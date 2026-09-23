@@ -28,7 +28,7 @@ jobs:
         # Note: in a real strictly typed codebase we remove `|| true`
       
       - name: Run Tests
-        run: npm test -ws
+        run: npm run test --if-present -ws
 
   docker-build-push:
     name: Docker Build & Push (CD)
