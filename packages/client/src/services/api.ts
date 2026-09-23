@@ -1,15 +1,13 @@
-
-
-const API_BASE = 'http://localhost:3000/api';
+const BASE_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
 export const fetchLeaderboard = async () => {
-  const res = await fetch(`${API_BASE}/leaderboard`);
+  const res = await fetch(`${BASE_URL}/api/leaderboard`);
   if (!res.ok) throw new Error('Failed to fetch leaderboard');
   return res.json();
 };
 
 export const submitMatch = async (winner: string, totalTurns: number, durationSeconds: number) => {
-  const res = await fetch(`${API_BASE}/matches`, {
+  const res = await fetch(`${BASE_URL}/api/matches`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ winner, totalTurns, durationSeconds })
@@ -19,7 +17,7 @@ export const submitMatch = async (winner: string, totalTurns: number, durationSe
 };
 
 export const fetchTaunt = async (event: string, unitName: string, damage?: number, hpRemaining?: number) => {
-  const res = await fetch(`${API_BASE}/npc/taunt`, {
+  const res = await fetch(`${BASE_URL}/api/npc/taunt`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ event, unitName, damage, hpRemaining })
